@@ -1,0 +1,11 @@
+show=drun
+width=600
+lines=8
+allow_images=true
+allow-markup=true
+image_size=30
+always_parse_args=true
+show_all=true
+print_command=true
+insensitive=true
+prompt= Search 
