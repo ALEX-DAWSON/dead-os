@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+this_folder="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+fonts_folder=$HOME/.fonts
+
+get-fonts() {
+    if [ ! -d "$fonts_folder" ]
+    then
+        mkdir $fonts_folder
+    fi
+    if [ ! -d "$fonts_folder/MaterialDesign-Font" ]
+    then
+        cd $fonts_folder &&
+        git clone https://github.com/Templarian/MaterialDesign-Font.git --depth 1 &&
+        cd $this_folder
+    else
+        cd $fonts_folder/MaterialDesign-Font &&
+        git pull &&
+        cd $this_folder
+    fi
+    if [ ! -d "$fonts_folder/devicon" ]
+    then
+        cd $fonts_folder &&
+        git clone https://github.com/devicons/devicon.git --depth 1 &&
+        cd $this_folder
+    else
+        cd $fonts_folder/devicon &&
+        git pull &&
+        cd $this_folder
+    fi
+    cp $fonts_folder/MaterialDesign-Font/MaterialDesignIconsDesktop.ttf $fonts_folder &&
+    
+    cp $fonts_folder/devicon/fonts/devicon.ttf $fonts_folder &&
+
+    cp $this_folder/fonts/* $fonts_folder
+}
+
+update-rc() {
+    cp $this_folder/home/.* $HOME
+}
+
+dependencies() {
+    sudo pacman -S - < dependencies.txt &&
+    bash aur-helper.sh
+}
+
+case $1 in
+    fonts)
+        get-fonts
+    ;;
+    rc) 
+        update-rc
+    ;;
+    depend)
+        dependencies
+    ;;
+    all)
+        update-rc &&
+        get-fonts &&
+        dependencies
+    ;;
+    *)
+        echo "Pick an option:"
+        echo "1) Update current fonts"
+        echo "2) Update your RC files"
+        echo "3) Grab all dependencies"
+        echo "4) All of the above"
+        read -p "What do you want to do? [1, 2, 3, 4]: " response
+        case $response in
+            1)
+                get-fonts
+            ;;
+            2) 
+                update-rc
+            ;;
+            4)
+                update-rc &&
+                get-fonts
+            ;;
+            *)
+                return 2>/dev/null
+            ;;
+        esac
+    ;;
+esac

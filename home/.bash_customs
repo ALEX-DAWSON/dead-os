@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#This script is to prompt any custom scripts to run on bash boot
+
+if [ -f ./Scripts/first-script.sh ]; then
+    . ./Scripts/first-script.sh
+fi
