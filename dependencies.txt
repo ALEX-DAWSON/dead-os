@@ -1,6 +1,6 @@
 hyprland
 hyprpaper
-hyprpolkitagent
+polkit-kde-agent
 hyprland-qtutils
 hypridle
 hyprlock
