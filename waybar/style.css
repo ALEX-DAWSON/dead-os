@@ -2,13 +2,15 @@
 
 @define-color bg @background;
 @define-color txt @color15;
-@define-color accent @color1;
+@define-color primary @color1;
+@define-color accent @color4;
 
 * {
     font-family: Pangolin, sans-serif;
     font-size: 18px;
     background: transparent;
     color: @txt;
+    border-radius: 8px;
 }
 
 #custom-launcher,
@@ -17,11 +19,15 @@
 #network,
 #tray,
 #pulseaudio {
-    border-radius: 8px;
-    border: 1px solid @accent;
+    border: 1px solid @primary;
     padding: 4px;
     background-color: @bg;
     margin-left: 5px;
     margin-right: 5px;
 
+}
+
+tooltip {
+    background-color: @bg;
+    border: 1px solid @accent;
 }

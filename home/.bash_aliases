@@ -13,6 +13,7 @@ alias vim='nvim'
 alias v='nvim'
 alias code='flatpak run com.vscodium.codium'
 
+alias gs='git status'
 #Search what distro family is being used and set appropriate varriables
 # release_file=/etc/os-release
 

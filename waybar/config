@@ -25,6 +25,10 @@
 		"tray"
 	],
 
+    "clock": {
+        "tooltip": true,
+        "tooltip-format": "{:%B %d %Y}"
+    },
 
 	"hyprland/workspaces": {
 		"tooltip": false
