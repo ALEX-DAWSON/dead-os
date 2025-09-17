@@ -81,7 +81,7 @@ cat <<EOF > $HOME/.config/dunst/dunstrc
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-    transparency = 0
+    transparency = 2
     frame_color = "$normal"
     separator_color = frame
 
