@@ -1,6 +1,7 @@
-@import url("/home/alex/.cache/wal/colors-waybar.css");
+@import url("/home/alex/.cache/wal/alpha-colors.css");
 
 @define-color bg @background;
+@define-color bg2 @color0;
 @define-color txt @color15;
 @define-color primary @color1;
 @define-color accent @color4;
@@ -8,9 +9,13 @@
 * {
     font-family: Pangolin, sans-serif;
     font-size: 18px;
-    background: transparent;
+    background-color: transparent;
     color: @txt;
-    border-radius: 8px;
+    transition: 150ms;
+}
+
+window#waybar {
+    background-color: @bg;
 }
 
 #custom-launcher,
@@ -20,14 +25,29 @@
 #tray,
 #pulseaudio {
     border: 1px solid @primary;
+    border-radius: 8px;
     padding: 4px;
-    background-color: @bg;
-    margin-left: 5px;
-    margin-right: 5px;
+    background-color: transparent;
+    margin: 5px;
 
 }
 
+#custom-launcher:hover,
+#workspaces:hover,
+#clock:hover,
+#network:hover,
+#tray:hover,
+#pulseaudio:hover {
+    background-color: @bg2;
+    border-radius: 8px;
+}
+
+#workspaces button {
+    color: @bg2;
+}
+
 tooltip {
-    background-color: @bg;
+    background-color: @bg2;
     border: 1px solid @accent;
+    border-radius: 8px;
 }
