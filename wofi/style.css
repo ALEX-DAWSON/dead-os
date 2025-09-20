@@ -1,8 +1,8 @@
-@import '/home/alex/.cache/wal/colors-waybar.css';
+@import '/home/alex/.cache/wal/alpha-colors.css';
 
 @define-color txt @color7;
-@define-color bg @color0;
-@define-color bg2 @color4;
+@define-color bg @background;
+@define-color bg2 @color0;
 @define-color bginput @color0;
 @define-color accent @color10;
 
@@ -25,7 +25,7 @@
     margin: 5px;
     padding: 10px;
     border: none;
-    background-color: @bg;
+    background-color: transparent;
  }
 
  /* Outer Box */
@@ -33,7 +33,7 @@
     margin: 5px;
     padding: 10px;
     border: none;
-    background-color: @bg;
+    background-color: transparent;
  }
 
  /* Scroll */
