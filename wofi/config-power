@@ -1,5 +1,4 @@
 show=dmenu
-lines=5
 width=250
 hide_search=true
 cache_file=/dev/null
