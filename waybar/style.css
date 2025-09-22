@@ -23,8 +23,9 @@ window#waybar {
 #clock,
 #network,
 #tray,
+#custom-power,
 #pulseaudio {
-    border: 1px solid @primary;
+    border: 2px solid @primary;
     border-radius: 8px;
     padding: 4px;
     background-color: transparent;
@@ -48,6 +49,6 @@ window#waybar {
 
 tooltip {
     background-color: @bg2;
-    border: 1px solid @accent;
+    border: 2px solid @accent;
     border-radius: 8px;
 }
