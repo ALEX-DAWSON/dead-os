@@ -14,6 +14,6 @@ case $selected in
   shutdown)
     exec systemctl poweroff -i;;
   cancel)
-    exec exit
+    exit
   ;;
 esac

@@ -47,7 +47,5 @@ fi
 
 export HISTCONTROL=ignoreboth
 
-export PATH=$PATH:/home/alex/.spicetify
+export PATH=$PATH:/home/alex/.spicetify:/home/alex/.config/scripts
 
-# Created by `pipx` on 2025-07-27 16:41:37
-#export PATH="$PATH:/home/alex/.local/bin"
