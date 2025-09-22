@@ -12,7 +12,6 @@
 	"modules-left": [
 		"custom/launcher",
 		"hyprland/workspaces",
-		"cava"
 	],
 
 	"modules-center": [
@@ -22,7 +21,8 @@
 	"modules-right": [
 		"network",
 		"pulseaudio",
-		"tray"
+		"tray",
+        "custom/power"
 	],
 
     "clock": {
@@ -42,7 +42,13 @@
 	"custom/launcher": {
     		"format": "󰣇",
     		"on-click": "pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun --location=top -y 15",
-    		"tooltip": false
+    		"tooltip-format": "Menu"
+ 	},
+
+	"custom/power": {
+    		"format": "󰐥",
+    		"on-click": "power.sh",
+    		"tooltip-format": "Power"
  	},
 
     "cava": {
@@ -69,10 +75,12 @@
     },
 
 	"network": {
-   		 "format-wifi": "󰖩 {bandwidthDownBits}",
-   		 "format-ethernet": "󰈀 {bandwidthDownBits}",
-   		 "format-disconnected": "󰪎 No Network",
-   		 "interval": 5,
-   		 "tooltip": false
+   		"format-wifi": "󰖩",
+   		"format-ethernet": "󰈀",
+   		"format-disconnected": "󰪎 No Network",
+   		"interval": 5,
+        "tooltip-format-wifi":"{essid} {bandwidthDownBits}",
+        "tooltip-format-ethernet":"{bandwidthDownBits}",
+        "tooltip-format-disconnected": "Check internet connection",
  	 }
 }
