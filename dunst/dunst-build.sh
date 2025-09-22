@@ -42,7 +42,7 @@ cat <<EOF > $HOME/.config/dunst/dunstrc
     padding = 10
     horizontal_padding = 8
     text_icon_padding = 12
-    frame_width = 1
+    frame_width = 2
     gap_size = 6
     sort = yes
     font = Pangolin 12
