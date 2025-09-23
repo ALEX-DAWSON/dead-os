@@ -75,6 +75,7 @@
     },
 
 	"network": {
+        "on-click": "networkmanager_dmenu",
    		"format-wifi": "󰖩",
    		"format-ethernet": "󰈀",
    		"format-disconnected": "󰪎 No Network",

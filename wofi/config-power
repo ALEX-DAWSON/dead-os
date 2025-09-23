@@ -1,4 +1,6 @@
 show=dmenu
 width=250
+y=0
+x=1080
 hide_search=true
 cache_file=/dev/null
