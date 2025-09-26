@@ -21,8 +21,9 @@ foot
 firefox
 libnotify
 uwsm
-slurp
 xdg-desktop-portal-hyprland
 grim
+slurp
+jq
 cliphist
 man
