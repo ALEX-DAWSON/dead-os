@@ -1,7 +1,9 @@
-# wal -R
-
 neofetch
 
+#set to true to enter development mode
+development_mode=true
+
+#--------PROMPT-----------------------------------------------
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
@@ -29,6 +31,7 @@ else
 fi
 unset color_prompt force_color_prompt
 
+#---------BASH-CONFIG-----------------------------------------
 if [ -f ./.bash_aliases ]; then
     . ./.bash_aliases
 fi
@@ -37,6 +40,15 @@ if [ -f ./.bash_customs ]; then
     . ./.bash_customs
 fi
 
+#-------------------------------------------------------------
+if [ -f ~/.cache/wal/colors.sh ]
+then
+    . ~/.cache/wal/colors.sh 
+else
+    . ~/.config/scripts/colors/catppuccin.sh
+fi
+
+#---------AUTO-COMPLETE---------------------------------------
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -45,7 +57,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#--------PATH-CONFIG------------------------------------------
 export HISTCONTROL=ignoreboth
 
 export PATH=$PATH:/home/alex/.spicetify:/home/alex/.config/scripts
 
+#-------------------------------------------------------------
+if [ $development_mode == true ]
+then
+    echo "Now in development mode. To exit development mode change in '.bashrc'"
+    cd .config
+fi

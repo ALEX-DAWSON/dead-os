@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 entries="󰌾  Lock\n󰍃  Logout\n󰒲  Sleep\n󰑓  Reboot\n󰐥  Shutdown\n󰜺 Cancel"
 
