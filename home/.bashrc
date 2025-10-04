@@ -66,5 +66,5 @@ export PATH=$PATH:/home/alex/.spicetify:/home/alex/.config/scripts
 if [ $development_mode == true ]
 then
     echo "Now in development mode. To exit development mode change in '.bashrc'"
-    cd .config
+    cd ~/.config
 fi
