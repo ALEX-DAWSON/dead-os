@@ -5,3 +5,5 @@ cava
 gtk-3.0
 dconf/user
 .mozilla
+dmenu
+dunst/dunstrc
