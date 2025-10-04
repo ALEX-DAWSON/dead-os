@@ -4,6 +4,37 @@ this_folder="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 fonts_folder=$HOME/.fonts
 
+build-dmenu() {
+    if [ -d "$this_folder/dmenu" ]
+    then
+        rm -rf $this_folder/dmenu
+        echo "Cleaned old dmenu folder"
+        sleep 2
+    fi
+
+    git clone git://git.suckless.org/dmenu $this_folder/dmenu
+    cd $this_folder/dmenu/
+    curl -O https://tools.suckless.org/dmenu/patches/border/dmenu-border-20230512-0fe460d.diff
+    curl -O https://tools.suckless.org/dmenu/patches/center/dmenu-center-20250407-b1e217b.diff
+    patch < dmenu-center-20250407-b1e217b.diff
+    patch < dmenu-border-20230512-0fe460d.diff
+    sudo make clean install
+}
+
+folders() {
+    cd
+    list=$HOME/.config/folders.txt
+
+    while read -r line; do
+        if [ ! -d ~/$line ]
+        then
+            echo "Made $line folder"
+            mkdir ~/$line
+        else
+            echo "$line already exists"
+	    fi
+    done <$list
+}
 
 get-fonts() {
     if [ ! -d "$fonts_folder" ]
@@ -47,8 +78,14 @@ dependencies() {
 }
 
 case $1 in
+    folders)
+        folders
+    ;;
     fonts)
         get-fonts
+    ;;
+    dmenu | build-dmenu)
+        build-dmenu
     ;;
     rc | update-rc) 
         update-rc
@@ -59,15 +96,17 @@ case $1 in
     all)
         update-rc &&
         get-fonts &&
-        dependencies
+        dependencies &&
+        build-dmenu
     ;;
     *)
         echo "Pick an option:"
         echo "1) Update your RC files"
         echo "2) Update current fonts"
         echo "3) Grab all dependencies"
-        echo "4) All of the above"
-        read -p "What do you want to do? [1, 2, 3, 4]: " response
+        echo "4) Build Dmenu"
+        echo "5) All of the above"
+        read -p "What do you want to do? [1, 2, 3, 4, 5]: " response
         case $response in
             1) 
                 update-rc
@@ -79,9 +118,13 @@ case $1 in
                 dependencies
             ;;
             4)
+                build-dmenu
+            ;;
+            5)
                 update-rc &&
                 get-fonts &&
-                dependencies
+                dependencies &&
+                build-dmenu
             ;;
             *)
                 return 2>/dev/null

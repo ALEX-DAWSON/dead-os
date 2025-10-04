@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+. ~/.cache/wal/colors.sh
+
+if [ -d "~/Pictures/Wallpapers" ]
+then
+    folder=$(echo -e "My Wallpapers\nDefault" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3)
+    if [ $folder == "My Wallpapers" ]
+    then
+        folder=~/Pictures/Wallpapers
+    elif [ $folder == "Default" ]
+    then
+        folder=~/.config/wallpapers
+    else
+        notify-send "Cancel Operation" &&
+        exit 0
+    fi
+else
+    folder=~/.config/wallpapers
+fi
+
+wallpaper=$(ls $folder | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 5)
+
+alpha=$(dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 1 -p "Transparency [ENTER = opaque]:" <&-)
+if [ -z $alpha ]
+then
+    alpha=100
+fi
+
+backend=$(echo -e "wal\ncolorz" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3 -p "Backend:")
+
+wal -i $folder/$wallpaper --cols16 --backend $backend -a $alpha
+bash ~/.config/dunst/dunst-build.sh
+swww img $folder/$wallpaper

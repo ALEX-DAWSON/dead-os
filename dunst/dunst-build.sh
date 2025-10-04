@@ -117,7 +117,7 @@ cat <<EOF > $HOME/.config/dunst/dunstrc
     default_icon = dialog-warning
 EOF
 
-pkill dunst && dunst &
+pkill dunst && notify-send "Restarting notifications"
 echo "restarted dunst"
 
     else
