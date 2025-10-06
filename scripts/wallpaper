@@ -2,33 +2,51 @@
 
 . ~/.cache/wal/colors.sh
 
-if [ -d "~/Pictures/Wallpapers" ]
+if [[ ! -d "$HOME/Pictures/Wallpapers" ]]
 then
-    folder=$(echo -e "My Wallpapers\nDefault" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3)
-    if [ $folder == "My Wallpapers" ]
+    folder=~/.config/wallpapers
+else
+    input=$(echo -e "My Wallpapers\nDefault" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3 || exit 0)
+    if [[ $input = "My Wallpapers" ]]
     then
-        folder=~/Pictures/Wallpapers
-    elif [ $folder == "Default" ]
+        folder=$HOME/Pictures/Wallpapers
+    elif [ $input == "Default" ]
     then
         folder=~/.config/wallpapers
     else
-        notify-send "Cancel Operation" &&
+#        notify-send "$input" &&
+#        notify-send "Cancelled Operation" &&
         exit 0
     fi
-else
-    folder=~/.config/wallpapers
 fi
 
-wallpaper=$(ls $folder | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 5)
+wallpaper=$(ls $folder | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 5 || exit 0)
+if [ -z $wallpaper ]
+then
+    exit 0
+fi
 
-alpha=$(dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 1 -p "Transparency [ENTER = opaque]:" <&-)
+alpha=$(dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 1 -p "Transparency [0-100] [ENTER = 100]:" <&- || exit 0)
 if [ -z $alpha ]
 then
     alpha=100
 fi
 
-backend=$(echo -e "wal\ncolorz" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3 -p "Backend:")
+backend=$(echo -e "wal\ncolorz" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3 -p "Backend:" || exit 0)
+if [ -z $backend ]
+then
+    exit 0
+fi
+
+dmenu-make() {
+    cd ~/.config/dmenu
+    sudo make clean install
+}
+
+transition=wipe
 
 wal -i $folder/$wallpaper --cols16 --backend $backend -a $alpha
 bash ~/.config/dunst/dunst-build.sh
-swww img $folder/$wallpaper
+swww img $folder/$wallpaper --transition-type $transition &&
+bash ~/.config/spicetify/Themes/wal/spicetify-wal
+dmenu-make

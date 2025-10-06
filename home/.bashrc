@@ -32,20 +32,20 @@ fi
 unset color_prompt force_color_prompt
 
 #---------BASH-CONFIG-----------------------------------------
-if [ -f ./.bash_aliases ]; then
-    . ./.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
-if [ -f ./.bash_customs ]; then
-    . ./.bash_customs
+if [ -f $HOME/.bash_customs ]; then
+    . $HOME/.bash_customs
 fi
 
 #-------------------------------------------------------------
-if [ -f ~/.cache/wal/colors.sh ]
+if [ -f $HOME/.cache/wal/colors.sh ]
 then
-    . ~/.cache/wal/colors.sh 
+    . $HOME/.cache/wal/colors.sh 
 else
-    . ~/.config/scripts/colors/catppuccin.sh
+    . $HOME/.config/scripts/colors/catppuccin.sh
 fi
 
 #---------AUTO-COMPLETE---------------------------------------

@@ -66,7 +66,7 @@
     mouse_right_click = close_all
 
     transparency = 2
-    frame_color = "#811c1b"
+    frame_color = "#1c7264"
     separator_color = frame
 
 [experimental]
@@ -74,27 +74,27 @@
 
 
 [urgency_low]
-    background = "#1a0b0b"
-    foreground = "#998e8e"
-    frame_color = "#64717d"
-	highlight = "#64717d, #811c1b"
+    background = "#182c37"
+    foreground = "#999fa2"
+    frame_color = "#4e9db1"
+	highlight = "#4e9db1, #1c7264"
     timeout = 20
 
 [urgency_normal]
-    background = "#1a0b0b"
-    foreground = "#998e8e"
-	frame_color = "#811c1b"
-	highlight = "#64717d, #811c1b"
+    background = "#182c37"
+    foreground = "#999fa2"
+	frame_color = "#1c7264"
+	highlight = "#4e9db1, #1c7264"
     timeout = 20
     override_pause_level = 30
     # Icon for notifications with normal urgency
     default_icon = dialog-information
 
 [urgency_critical]
-    background = "#1a0b0b"
-    foreground = "#998e8e"
-    frame_color = "#94120d"
-	highlight = "#64717d, #811c1b"
+    background = "#182c37"
+    foreground = "#999fa2"
+    frame_color = "#378195"
+	highlight = "#4e9db1, #1c7264"
     timeout = 0
     override_pause_level = 60
     # Icon for notifications with critical urgency

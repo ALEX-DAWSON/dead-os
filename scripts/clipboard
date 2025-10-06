@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+. ~/.cache/wal/colors.sh
+
+cliphist list | dmenu -c -p "Clipboard:" -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 5 | cliphist decode | wl-copy
+
+notify-send -i none --app-name="Clipboard" "Copied to Clipboard"
