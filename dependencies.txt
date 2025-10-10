@@ -27,3 +27,5 @@ slurp
 jq
 cliphist
 man
+pamixer
+networkmanager

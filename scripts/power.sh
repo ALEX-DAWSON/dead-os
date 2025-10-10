@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-entries="󰌾  Lock\n󰍃  Logout\n󰒲  Sleep\n󰑓  Reboot\n󰐥  Shutdown\n󰜺 Cancel"
+. ~/.cache/wal/colors.sh
 
-selected=$(echo -e $entries|wofi --lines 7 -c ~/.config/wofi/config-power | awk '{print tolower($2)}')
+entries="󰌾  Lock\n󰍃  Logout\n󰒲  Sleep\n󰑓  Reboot\n󰐥  Shutdown\n󰜺  Cancel"
+
+selected=$(echo -e $entries|dmenu -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin-10 -l 7 -c | awk '{print tolower($2)}')
 
 case $selected in
   lock)

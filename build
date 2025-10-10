@@ -15,9 +15,11 @@ build-dmenu() {
     git clone git://git.suckless.org/dmenu $this_folder/dmenu
     cd $this_folder/dmenu/
     curl -O https://tools.suckless.org/dmenu/patches/border/dmenu-border-20230512-0fe460d.diff
+    curl -O https://tools.suckless.org/dmenu/patches/password/dmenu-password-5.0.diff
     curl -O https://tools.suckless.org/dmenu/patches/center/dmenu-center-20250407-b1e217b.diff
     patch < dmenu-center-20250407-b1e217b.diff
     patch < dmenu-border-20230512-0fe460d.diff
+    patch < dmenu-password-5.0.diff
     sudo make clean install
 }
 
