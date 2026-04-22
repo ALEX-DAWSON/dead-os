@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# -----Colors--------------------------------------------
+. ~/.cache/wal/colors.sh
+
+# -----Varriables----------------------------------------
+mute_status=$(pamixer --get-mute)
+
+if [ $mute_status == true ]
+then
+    mute="󰕾 Unmute"
+else
+    mute="󰝟 Mute"
+fi
+controls="󰒓 More Controls"
+
+options="$mute\n$controls"
+
+# -----Dmenu---------------------------------------------
+select=$(echo -e $options | dmenu -c -p "Audio Options:" -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 5)
+
+# -----Execute-------------------------------------------
+case $select in
+    $mute)
+        pamixer -t
+    ;;
+    $controls)
+        hyprctl dispatch workspace special:magic > /dev/null &&
+        pavucontrol
+    ;;
+esac

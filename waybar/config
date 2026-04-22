@@ -12,6 +12,7 @@
 	"modules-left": [
 		"custom/launcher",
 		"hyprland/workspaces",
+        "custom/now-playing",
 	],
 
 	"modules-center": [
@@ -22,6 +23,7 @@
 		"network",
 		"pulseaudio",
 		"tray",
+        "battery",
         "custom/power"
 	],
 
@@ -45,11 +47,41 @@
     		"tooltip-format": "Menu"
  	},
 
+    "battery": {
+        "bat": "BAT0",
+        "interval": 10,
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"], 
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+    },
+
 	"custom/power": {
-    		"format": "󰐥",
-    		"on-click": "power.sh",
-    		"tooltip-format": "Power"
+        "format": "󰐥",
+        "on-click": "power.sh",
+        "tooltip-format": "Power"
  	},
+
+    "custom/now-playing": {
+        "hide-empty-text": true,
+        "format": "{}",
+        "exec": "~/.config/scripts/now-playing.sh",
+        "exec-if": "pgrep spotify"
+    },
+
+    "pulseaudio" : {
+        "on-click": "audioctl",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": { 
+            "headphone": "󰋋",
+            "headphone-muted": "󰟎",
+            "default": ["󰕿", "󰖀", "󰕾"],
+        },
+    },
 
     "cava": {
         "framerate": 30,
@@ -78,7 +110,7 @@
         "on-click": "networkmanager_dmenu",
    		"format-wifi": "󰖩",
    		"format-ethernet": "󰈀",
-   		"format-disconnected": "󰪎 No Network",
+   		"format-disconnected": "󰪎",
    		"interval": 5,
         "tooltip-format-wifi":"{essid} {bandwidthDownBits}",
         "tooltip-format-ethernet":"{bandwidthDownBits}",

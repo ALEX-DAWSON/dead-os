@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-. ~/.cache/wal/colors.sh
+. $HOME/.cache/wal/colors.sh
 
 if [[ ! -d "$HOME/Pictures/Wallpapers" ]]
 then
-    folder=~/.config/wallpapers
+    folder=$HOME/.config/wallpapers
 else
     input=$(echo -e "My Wallpapers\nDefault" | dmenu -c -nb $color0 -nf $color6 -sb $color3 -sf $color7 -fn Pangolin -l 3 -p "Folder:" || exit 0)
     if [[ $input = "My Wallpapers" ]]
@@ -12,7 +12,7 @@ else
         folder=$HOME/Pictures/Wallpapers
     elif [ $input == "Default" ]
     then
-        folder=~/.config/wallpapers
+        folder=$HOME/.config/wallpapers
     else
 #        notify-send "$input" &&
 #        notify-send "Cancelled Operation" &&
@@ -38,6 +38,13 @@ then
     exit 0
 fi
 
+lock-bg() {
+    wallpaper_cache="$HOME/.cache/blur_wallpaper.png"
+    options="-blur 50x50"
+    magick $folder/$wallpaper -verbose $options $wallpaper_cache &&
+    notify-send -i none "Done"
+}
+
 dmenu-make() {
     cd ~/.config/dmenu
     sudo make clean install
@@ -49,3 +56,4 @@ wal -i $folder/$wallpaper --cols16 --backend $backend -a $alpha
 bash ~/.config/dunst/dunst-build.sh
 swww img $folder/$wallpaper --transition-type $transition &&
 bash ~/.config/spicetify/Themes/wal/spicetify-wal
+lock-bg

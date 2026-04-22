@@ -1,10 +1,14 @@
 @import url("/home/alex/.cache/wal/alpha-colors.css");
 
+/* -------Colours--------------------------------------------- */
+
 @define-color bg @background;
 @define-color bg2 @color0;
 @define-color txt @color15;
 @define-color primary @color1;
 @define-color accent @color4;
+
+/* -------Universal------------------------------------------- */
 
 * {
     font-family: Pangolin, sans-serif;
@@ -18,13 +22,12 @@ window#waybar {
     background-color: @bg;
 }
 
+/* -------Modules--------------------------------------------- */
+
 #custom-launcher,
 #workspaces,
 #clock,
-#network,
-#tray,
-#custom-power,
-#pulseaudio {
+.modules-right {
     border: 2px solid @primary;
     border-radius: 8px;
     padding: 4px;
@@ -33,22 +36,44 @@ window#waybar {
 
 }
 
+#network,
+#tray,
+#battery,
+#pulseaudio {
+    border-right: 2px solid @accent;
+}
+
+#network,
+#tray,
+#battery,
+#custom-power,
+#pulseaudio {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 #custom-launcher:hover,
+#custom-power:hover,
+#battery:hover,
 #workspaces:hover,
 #clock:hover,
 #network:hover,
 #tray:hover,
 #pulseaudio:hover {
     background-color: @bg2;
-    border-radius: 8px;
 }
 
-#workspaces button {
-    color: @bg2;
-}
+/* -------Tooltips-------------------------------------------- */
 
 tooltip {
     background-color: @bg2;
     border: 2px solid @accent;
     border-radius: 8px;
 }
+
+/* -------Misc------------------------------------------------ */
+
+#workspaces button {
+    color: @bg2;
+}
+
